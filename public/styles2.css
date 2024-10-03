@@ -1,0 +1,59 @@
+body{
+  background: rgb(34,193,195);
+background: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100%);
+}
+
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  .table th,
+  .table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+  }
+  
+  .table th.bg-success {
+    background-color: #28a745;
+    color: white;
+  }
+  
+  .text-center {
+    text-align: center;
+  }
+  
+  .habit-status {
+    cursor: pointer;
+  }
+  .newhabit{
+    padding: 5px;
+    font-size: 1rem;
+    color: black;
+    background-color:tomato;
+    border-radius: 20px;
+  }
+  
+  .status-icon {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+  }
+  
+  .status-icon.done {
+    padding: 4px;
+    background-color: #28a745;
+    border-radius: 50%;
+    display: inline-block;
+  }
+  
+  .status-icon.undone {
+    padding: 4px;
+    background-color: #dc3545;
+    border-radius: 50%;
+    display: inline-block;
+  }
+  

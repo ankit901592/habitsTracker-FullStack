@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weekly Habits Progress</title>
+    <link rel="stylesheet" href="/styles2.css" />
+  </head>
+  <body>
+    <div>
+      <h4>Weekly Habits Progress:</h4>
+      <a href="/api?"> <button class="newhabit" >Create a new Habit</button> </a>
+      <table class="table table-bordered mt-5">
+        <thead>
+          <tr>
+            <th class="bg-success text-white">Habit</th>
+            <% previousDates.forEach((date) => { %>
+            <th class="bg-success text-white">
+              <%= date.dayOfWeek %> - <%= date.date %>/<%= date.month %>
+            </th>
+            <% }) %>
+          </tr>
+        </thead>
+        <tbody>
+          <% if (habits&& habits.length > 0) { %> <% habits.forEach((habit) => {
+          %>
+          <tr>
+            <td>
+              <h2><%= habit.Title %></h2>
+              <h5><%= habit.descprition %></h5>
+            </td>
+            <% if (habit.weekStatus && habit.weekStatus.length > 0) { %> <%
+            previousDates.forEach((date, index) => { %>
+            <td class="text-center habit-status">
+              <% const status = habit.weekStatus.find(day => { const [dayOfWeek,
+              dayMonth] = day.date.split(' - '); const [dayDate, dayMonthNum] =
+              dayMonth.split('/').map(Number); return dayDate === date.date &&
+              dayMonthNum === date.month; }); %> <% if (status !== undefined &&
+              status.status !== undefined) { %> <% if (status.status === true) {
+              %>
+              <a
+                href="/api/weekly/Toogle/<%= habit._id %>/<%= status.statusId %>"
+              >
+                <span class="status-icon done" title="Completed">👍</span>
+              </a>
+              <% } else if (status.status === false) { %>
+              <a
+                href="/api/weekly/Toogle/<%= habit._id %>/<%= status.statusId %>"
+              >
+                <span class="status-icon undone" title="Not Completed">👎</span>
+              </a>
+              <% } %> <% } else { %>
+              <span class="status-icon" title="No Status">X</span>
+              <% } %>
+            </td>
+
+            <% }) %> <% } else { %>
+            <td colspan="<%= previousDates.length %>" class="text-center">
+              No status available
+            </td>
+            <% } %>
+          </tr>
+          <% }) %> <% } else { %>
+          <tr>
+            <td colspan="<%= previousDates.length + 1 %>" class="text-center">
+              No habits found.
+            </td>
+          </tr>
+          <% } %>
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>

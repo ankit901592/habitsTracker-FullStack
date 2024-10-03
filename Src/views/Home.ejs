@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/styles.css" />
+    <title>Habit Tracker</title>
+  </head>
+  <body>
+    <div>
+      <h3 class="text-success heading">Habit Tracker</h3>
+      <a href="/api/weekly"> <h3 class="text-success">Weeklist</h3></a>
+
+      <h4><%= UpdateHabbit ? 'Update Habit' : 'Add New Habit' %></h4>
+      <form
+        id="habitForm"
+        method="POST"
+        action="<%= UpdateHabbit ? '/api/updateHabbit' + UpdateHabbit._id : '/api/createHabit/' %>"
+      >
+        <div class="mb-3">
+          <label for="habitName">Habit Name:</label>
+          <input
+            name="Title"
+            value="<%= UpdateHabbit ? UpdateHabbit.Title : '' %>"
+            type="text"
+            class="form-control"
+            id="habitName"
+            placeholder="Enter habit name"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label for="habitDescription">Description:</label>
+          <textarea
+            name="description"
+            class="form-control"
+            id="habitDescription"
+            placeholder="Enter habit description"
+            required
+          >
+<%= UpdateHabbit ? UpdateHabbit.descprition : '' %></textarea
+          >
+        </div>
+        <button type="submit" class="btn btn-primary" id="submitButton">
+          <%= UpdateHabbit ? 'Update Habit' : 'Add Habit' %>
+        </button>
+      </form>
+
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Index</th>
+            <th>Habit</th>
+            <th>Description</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="habitTableBody">
+          <% habbits.forEach((h, i) => { %>
+          <tr>
+            <td><%= i %></td>
+            <td><h3><%= h.Title %></h3></td>
+            <td><%= h.descprition %></td>
+            <td>
+              <a href="/api/update/<%= h._id %>"
+                ><button class="btn-primary" >Update Habit</button></a
+              >
+              <a href="/api/delete/<%= h._id %>"
+                ><button class="btn-danger">Delete Habit</button></a
+              >
+
+              <a href="/api/weekly"><button class="btn-green">Weekliy Progress</button> </a>
+            </td>
+          </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>
