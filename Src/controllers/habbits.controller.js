@@ -17,7 +17,7 @@ export class habbitsController {
       const saved = await this.Repository.CreateHabbit(Title, description);
       if (saved) {
         // Redirect to the API endpoint on success
-        res.redirect("http://localhost:3000/api?");
+        res.redirect("http://localhost:3000/api/");
       } else {
         // Send an error response if saving failed
         res.status(200).send("something went wrong");
@@ -38,7 +38,7 @@ export class habbitsController {
       const isDeleted = await this.Repository.deleteHabbit(id);
       if (isDeleted) {
         // Redirect to the API endpoint on success
-        res.redirect("http://localhost:3000/api?");
+        res.redirect("http://localhost:3000/api/");
       } else {
         // Send an error response if deletion failed
         res.status(404).send("something is wrong");
@@ -74,7 +74,7 @@ export class habbitsController {
       const isUpdated = await this.Repository.modifyhabbit(id, Title, description);
       if (isUpdated) {
         // Redirect to the API endpoint on success
-        res.status(200).redirect("http://localhost:3000/api?");
+        res.status(200).redirect("http://localhost:3000/api/");
       } else {
         // Send an error response if updating failed
         res.status(404).send("Something went wrong");

@@ -16,12 +16,12 @@ server.set("views", "./Src/views");
 
 server.use(express.static("Src/views"));
 
-server.use("/api", HabbitRouter);
+server.use("/api/", HabbitRouter);
 server.use("/api/weekly", WeeklyRouter);
 console.log(process.env.MONGO_URI);
 
 server.listen(3000, () => {
   
-  console.log("server is runnig on port   http://localhost:3000/api?");
+  console.log("server is runnig on port   http://localhost:3000/api/");
   connect();
 });
