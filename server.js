@@ -1,3 +1,5 @@
+import dotenv from 'dotenv'
+dotenv.config();
 import express from "express";
 import connect from "./config.js/mongose.config.js";
 import HabbitRouter from "./Src/Routes/Habbit.routes.js";
@@ -16,8 +18,10 @@ server.use(express.static("Src/views"));
 
 server.use("/api", HabbitRouter);
 server.use("/api/weekly", WeeklyRouter);
+console.log(process.env.MONGO_URI);
 
 server.listen(3000, () => {
-  connect();
+  
   console.log("server is runnig on port   http://localhost:3000/api?");
+  connect();
 });
